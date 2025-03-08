@@ -13,7 +13,7 @@ interface CreateQuestionUseCaseResponse {
 }
 
 export class CreateQuestionUseCase {
-  constructor(private quesionsRepositoory: QuestionsRepository) {}
+  constructor(private questionsRepository: QuestionsRepository) {}
 
   async execute({
     authorId,
@@ -26,7 +26,7 @@ export class CreateQuestionUseCase {
       content,
     })
 
-    await this.quesionsRepositoory.create(question)
+    await this.questionsRepository.create(question)
 
     return { question }
   }
