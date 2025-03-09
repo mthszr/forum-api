@@ -1,4 +1,4 @@
-import type { PagitationParams } from '@/core/repositories/pagination-params'
+import type { PaginationParams } from '@/core/repositories/pagination-params'
 import type { Question } from '../../enterprise/entities/question'
 
 export interface QuestionsRepository {
@@ -7,5 +7,5 @@ export interface QuestionsRepository {
   delete(question: Question): Promise<void>
   findById(id: string): Promise<Question | null>
   findBySlug(slug: string): Promise<Question | null>
-  findManyRecent(params: PagitationParams): Promise<Question[]>
+  findManyRecent(params: PaginationParams): Promise<Question[]>
 }
