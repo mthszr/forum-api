@@ -27,7 +27,7 @@ describe('Create Question', () => {
 
     expect(result.isRight()).toBe(true)
     expect(inMemoryQuestionsRepository.items[0]).toEqual(result.value?.question)
-    expect(
+    expect( 
       inMemoryQuestionsRepository.items[0].attachments.currentItems
     ).toHaveLength(2)
     expect(
