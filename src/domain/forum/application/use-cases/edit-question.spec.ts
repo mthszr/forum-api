@@ -12,9 +12,11 @@ let sut: EditQuestionUseCase
 
 describe('Edit Question', () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
     inMemoryQuestionAttachmentsRepository =
       new InMemoryQuestionAttachmentsRepository()
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository
+    )
     sut = new EditQuestionUseCase(
       inMemoryQuestionsRepository,
       inMemoryQuestionAttachmentsRepository
@@ -59,6 +61,10 @@ describe('Edit Question', () => {
 
     expect(
       inMemoryQuestionsRepository.items[0].attachments.currentItems
+    ).toHaveLength(2)
+
+    expect(
+      inMemoryQuestionsRepository.items[0].attachments.currentItems
     ).toEqual([
       expect.objectContaining({
         attachmentId: new UniqueEntityID('attachment-1'),
@@ -84,7 +90,7 @@ describe('Edit Question', () => {
       authorId: 'not-author-id',
       title: 'new title',
       content: 'new content',
-      attachmentsIds: []
+      attachmentsIds: [],
     })
 
     expect(result.isLeft()).toBe(true)
